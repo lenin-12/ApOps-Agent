@@ -1,0 +1,29 @@
+{
+  "name": "apops-agent",
+  "version": "0.1.0",
+  "description": "Autonomous accounts-payable operator: LLM tool-calling agent + mock ERP + independent verifier",
+  "main": "agent/cli.js",
+  "scripts": {
+    "erp": "node erp/server.js",
+    "erp:reset": "node -e \"fetch('http://localhost:4000/admin/reset',{method:'POST',headers:{'x-apops-admin':'1'}}).then(()=>console.log('reset'))\"",
+    "agent": "node agent/cli.js",
+    "test": "node test/smoke.js && node test/langchain.test.js && node test/logging.test.js && node test/ui.test.js && node test/verifier.test.js && node evals/run.js --selftest",
+    "check:browser": "node scripts/browser-check.js",
+    "setup": "npx playwright install chromium",
+    "eval": "node evals/run.js",
+    "eval:selftest": "node evals/run.js --selftest",
+    "ui": "node ui/server.js",
+    "test:e2e": "node test/e2e-browser.js && node test/ui-browser.js"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.2.17",
+    "@langchain/langgraph": "^1.5.0",
+    "@langchain/openai": "^1.6.2",
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "pdf-parse": "^2.4.5",
+    "playwright": "^1.64.0",
+    "zod": "^4.6.7"
+  }
+}
