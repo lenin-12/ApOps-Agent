@@ -4,6 +4,15 @@ An autonomous accounts-payable operator. You give it a plain-English task; it wo
 
 Built with LangChain.js, LangGraph.js, OpenAI tool calling, Playwright, Express and SQLite.
 
+## Demo and repository
+
+- **Demo video:** https://drive.google.com/file/d/1V9bNRXgj0lpHazJNnyBa9oRisCcf-_uS/view?usp=drive_link
+- **Repository:** https://github.com/lenin-12/ApOps-Agent
+
+## AI tools used
+
+This project was built with AI coding assistance (Claude), which the brief allows. The agent itself uses LangChain.js, LangGraph.js and an OpenAI chat model at run time (see "Models, APIs and libraries"). The behaviour claimed in this README is backed by the automated suites (`npm test`, `npm run test:e2e`) and by the live evaluation results reported below, including the scenarios that failed.
+
 ## Setup
 
 Requires Node.js 22 or newer (better-sqlite3 13 and the LangChain OpenAI package require it). Check with `node -v`.
@@ -44,8 +53,7 @@ Every run writes a step-by-step trace (`runs/<time>/trace.jsonl`): each model de
 ## Web UI (easiest way to run and demo)
 
 ```bash
-npm run ui        # starts FinDesk too if it is not already running 
-                # use this command to run direclty it starts everything 
+npm run ui        # starts FinDesk too if it is not already running
 ```
 Open http://localhost:3000 (it listens on this machine only). Type a task (or pick an example) and press Run task. Test problems (the chaos toggles) and run options are under "Options and test problems".
 
@@ -206,7 +214,3 @@ Run `npm run eval -- --runs 3` again to measure the effect of these changes.
 ## What I would build next
 
 LangGraph checkpointing with `interrupt()` for durable, resumable human approvals; treating HTTP error pages and sign-in redirects as failures in the browser layer, with explicit "error detected" and "recovered" trace events that record the cause and the action taken; a graceful `failed` result when the model API is down; parallel/queued runs and scheduling; a real secrets vault and per-role permissions; vision fallback for non-form UIs; a second application through a second adapter; an approval UI instead of terminal prompts; optional LangSmith tracing (`LANGSMITH_TRACING=true`) alongside the JSONL trace; and CI-run evals with trend tracking.
-
-## AI coding tools used
-
-ChatGPT and Claude were used as AI coding assistants during this project.
